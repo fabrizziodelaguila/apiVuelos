@@ -54,3 +54,22 @@ exports.searchDestinoByName = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 };
+
+exports.getDestinoById = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const pool = await getConnection();
+        const result = await pool.request()
+            .input('id', sql.Int, id)
+            .query('SELECT * FROM destinos WHERE id = @id');
+
+        if (result.recordset.length === 0) {
+            return res.status(404).json({ message: 'Destino no encontrado' });
+        }
+
+        res.status(200).json(result.recordset[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
