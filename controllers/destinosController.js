@@ -55,6 +55,8 @@ exports.searchDestinoByName = async (req, res) => {
     }
 };
 
+// se agregó el apartado busqueda por id
+
 exports.getDestinoById = async (req, res) => {
     const { id } = req.params;
 
@@ -65,7 +67,7 @@ exports.getDestinoById = async (req, res) => {
             .query('SELECT * FROM destinos WHERE id = @id');
 
         if (result.recordset.length === 0) {
-            return res.status(404).json({ message: 'Destino no encontrado' });
+            return res.status(404).json({ message: 'No se encontró el destino' });
         }
 
         res.status(200).json(result.recordset[0]);
