@@ -6,12 +6,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Ruta raíz que muestra botón
 app.get('/', (req, res) => {
     res.send(`
         <html>
             <head>
-                <title>API Destinos</title>
+                <title>API Destinos y Vuelos</title>
             </head>
             <body style="font-family: Arial; text-align: center; margin-top: 50px;">
                 <h1>Bienvenido a la API de Destinos ✈️</h1>
@@ -19,10 +18,17 @@ app.get('/', (req, res) => {
                 <a href="/api/destinos">
                     <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Ver Destinos</button>
                 </a>
+
+                <p style="margin-top: 30px;">Haz clic para ver los vuelos disponibles:</p>
+                <a href="/api/vuelos">
+                    <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Ver Vuelos</button>
+                </a>
             </body>
         </html>
     `);
 });
+
+
 
 // Rutas API
 const vuelosRoutes = require('./routes/vuelosRoutes');
