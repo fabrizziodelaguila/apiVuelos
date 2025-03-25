@@ -37,6 +37,9 @@ app.use('/api/vuelos', vuelosRoutes);
 const destinosRoutes = require('./routes/destinosRoutes');
 app.use('/api/destinos', destinosRoutes);
 
+const categoriaRoutes = require('./routes/categoriasRoutes');
+app.use('/api/categorias', categoriaRoutes);
+
 // Servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
